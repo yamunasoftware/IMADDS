@@ -11,6 +11,6 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 COPY lib/. /main/lib
 COPY src/. /main/src
-COPY init.sh /main/
+COPY run.sh /main/
 RUN dos2unix /main/*
-CMD ["bash", "-c", "sleep 5 && bash init.sh"]
+CMD ["bash", "-c", "sleep 10 && bash run.sh"]
