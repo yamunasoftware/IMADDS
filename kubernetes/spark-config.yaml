@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spark-config
+  namespace: imadds
+data:
+  SPARK_MASTER_URL: "spark://spark-master:7077"

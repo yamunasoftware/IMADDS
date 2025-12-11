@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imadds
+  namespace: imadds
+spec:
+  selector:
+    matchLabels: { app: imadds }
+  template:
+    metadata:
+      labels: { app: imadds }
+    spec:
+      containers:
+        - name: imadds
+          image: imadds:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: imadds
+  namespace: imadds
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: imadds
+  type: ClusterIP
