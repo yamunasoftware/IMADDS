@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd src
-python -B topic.py
+python -B -m scripts.topic
 sleep 60
-python -B stream.py &
-python -B retry.py &
+python -B -m scripts.stream &
+python -B -m scripts.retry &
