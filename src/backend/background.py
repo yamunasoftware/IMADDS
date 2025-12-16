@@ -1,27 +1,24 @@
 import os
 from backend.environment import fetch, fetch_all
 from pyspark.sql import SparkSession
-from confluent_kafka.admin import AdminClient, NewTopic
-
-# Creates Streaming Kafka Topic:
-def create_kafka_topic():
-  admin_client = AdminClient({'bootstrap.servers': 'kafka:9092'})
-  admin_client.create_topics([NewTopic(fetch("kafka_topic"), 8, 1)])
 
 # Gets Auth Credentials:
 def get_auth_creds():
-  username, password = '', ''
+  url, username, password = '', '', ''
   with open('/main/src/.auth', 'r') as file:
     contents = file.read()
     lines = contents.split('\n')
 
     for line in lines:
+      if 'URL' in line:
+        url = line.replace('URL=', '')
+
       if 'USERNAME' in line:
         username = line.replace('USERNAME=', '')
       
       if 'PASSWORD' in line:
         password = line.replace('PASSWORD=', '')
-  return username, password
+  return url, username, password
 
 # Starts Spark Session:
 def start_spark(name):
@@ -29,6 +26,8 @@ def start_spark(name):
   .appName(name) \
   .config("spark.master", "spark://spark-master:7077") \
   .config("spark.jars", jars_config()) \
+  .config("spark.mongodb.input.uri", fetch("db_url")) \
+  .config("spark.mongodb.output.uri", fetch("db_url")) \
   .getOrCreate()
 
 # JARs Config from Environment Info:

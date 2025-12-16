@@ -10,3 +10,9 @@ kafka_df = spark.readStream \
   .option("subscribe", fetch("kafka_topic")) \
   .option("startingOffsets", "latest") \
   .load()
+
+query = kafka_df.writeStream \
+  .outputMode("append") \
+  .format("console") \
+  .start()
+query.awaitTermination() 

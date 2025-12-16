@@ -1,6 +1,8 @@
 # Private Environment Info:
 _info = {
-  "db_url": "mongodb://admin:password@imaddsdb:27017/events",
+  "db_url": "mongodb://admin:password@imaddsdb:27017",
+  "db_name": "events",
+  "db_collection": "failures",
   "kafka_url": "kafka:9092",
   "kafka_topic": "IMADDS",
   "kafka_jar": "/main/lib/spark-kafka.jar",
