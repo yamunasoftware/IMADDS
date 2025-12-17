@@ -2,24 +2,6 @@ import os
 from backend.environment import fetch, fetch_all
 from pyspark.sql import SparkSession
 
-# Gets Auth Credentials:
-def get_auth_creds():
-  url, username, password = '', '', ''
-  with open('/main/src/.auth', 'r') as file:
-    contents = file.read()
-    lines = contents.split('\n')
-
-    for line in lines:
-      if 'URL' in line:
-        url = line.replace('URL=', '')
-
-      if 'USERNAME' in line:
-        username = line.replace('USERNAME=', '')
-      
-      if 'PASSWORD' in line:
-        password = line.replace('PASSWORD=', '')
-  return url, username, password
-
 # Starts Spark Session:
 def start_spark(name):
   return SparkSession.builder \
