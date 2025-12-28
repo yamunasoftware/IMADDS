@@ -8,7 +8,7 @@ _info = {
   "kafka_jar": "/main/lib/spark-kafka.jar",
   "snowflake_jars": "/main/lib/snowflake-jdbc.jar,/main/src/spark-snowflake.jar",
   "mongo_jar": "/main/lib/spark-mongodb.jar",
-  "models_path": "/main/src/models"
+  "models_path": "/main/models"
 }
 
 # Fetch Data from Environment Info:
