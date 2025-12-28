@@ -7,7 +7,8 @@ _info = {
   "kafka_topic": "IMADDS",
   "kafka_jar": "/main/lib/spark-kafka.jar",
   "snowflake_jars": "/main/lib/snowflake-jdbc.jar,/main/src/spark-snowflake.jar",
-  "mongo_jar": "/main/lib/spark-mongodb.jar"
+  "mongo_jar": "/main/lib/spark-mongodb.jar",
+  "models_path": "/main/src/models"
 }
 
 # Fetch Data from Environment Info:
