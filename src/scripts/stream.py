@@ -1,8 +1,10 @@
 ### STREAM SCRIPT ###
 
+from backend.model import load_models, predict_model
 from backend.environment import fetch
 from backend.background import start_spark
 
+models = load_models()
 spark = start_spark("KafkaStreamReader")
 kafka_df = spark.readStream \
   .format("kafka") \
@@ -11,6 +13,8 @@ kafka_df = spark.readStream \
   .option("startingOffsets", "latest") \
   .load()
 
+#converted_df = kafka_df.toPandas()
+#prediction = predict_model(models['model.pkl'], converted_df)
 query = kafka_df.writeStream \
   .outputMode("append") \
   .format("console") \
