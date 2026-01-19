@@ -13,8 +13,11 @@ kafka_df = spark.readStream \
   .option("startingOffsets", "latest") \
   .load()
 
-#converted_df = kafka_df.toPandas()
-#prediction = predict_model(models['model.pkl'], converted_df)
+# converted_df = kafka_df.toPandas()
+# prediction = predict_model(models['model.pkl'], converted_df)
+# converted_df['prediction'] = prediction
+# output_df = spark.createDataFrame(converted_df)
+
 query = kafka_df.writeStream \
   .outputMode("append") \
   .format("console") \
