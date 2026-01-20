@@ -1,20 +1,11 @@
 #!/bin/bash
 
-set -m
-cleanup() {
-  echo "Ending IMADDS..."
-  kill -- -$$
-  echo "IMADDS Ended."
-  exit 0
-}
-
+echo "Initializing IMADDS..."
 cd src
 python -B -m scripts.init
 sleep 60
-echo "Starting IMADDS..."
 
-trap cleanup SIGINT SIGTERM
+echo "Starting IMADDS..."
 python -B -m scripts.stream &
 python -B -m scripts.retry &
 echo "IMADDS Started."
-wait

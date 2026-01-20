@@ -31,13 +31,17 @@ def jars_config():
   return config
 
 # Writes Data to Snowflake:
-def write_snowflake(spark, data):
-  return 0
+def write_snowflake(data):
+  try:
+    return 0
+  except Exception:
+    _write_mongo(data)
+    return 1
 
 # Reads Data from MongoDB:
 def read_mongo(spark, query):
   return 0
 
 # Writes Message to MongoDB:
-def write_mongo(spark, data):
+def _write_mongo(data):
   return 0

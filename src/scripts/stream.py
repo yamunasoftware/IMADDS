@@ -2,7 +2,7 @@
 
 from backend.model import load_models, predict_model
 from backend.environment import fetch
-from backend.background import start_spark
+from backend.background import start_spark, write_snowflake
 
 models = load_models()
 spark = start_spark("KafkaStreamReader")
@@ -20,6 +20,7 @@ kafka_df = spark.readStream \
 
 query = kafka_df.writeStream \
   .outputMode("append") \
-  .format("console") \
+  .foreachBatch(write_snowflake) \
+  .option("checkpointLocation", "/main/check") \
   .start()
-query.awaitTermination() 
+query.awaitTermination()

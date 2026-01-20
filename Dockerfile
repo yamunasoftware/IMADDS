@@ -2,6 +2,7 @@ FROM python:3.10-slim
 WORKDIR /main
 USER root
 RUN mkdir /main/src
+RUN mkdir /main/check
 
 COPY requirements.txt /main/
 RUN apt-get update && apt-get install -y dos2unix
