@@ -6,6 +6,7 @@ _info = {
   "kafka_url": "kafka:9092",
   "kafka_topic": "IMADDS",
   "kafka_jar": "/main/lib/spark-kafka.jar",
+  "snowflake_table": "IMADDS_MESSAGES",
   "snowflake_jars": "/main/lib/snowflake-jdbc.jar,/main/src/spark-snowflake.jar",
   "mongo_jar": "/main/lib/spark-mongodb.jar",
   "models_path": "/main/models"
