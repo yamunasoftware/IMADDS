@@ -4,7 +4,7 @@ metadata:
   name: spark-worker
   namespace: imadds
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: spark-worker
@@ -25,3 +25,19 @@ spec:
           value: "4"
         - name: SPARK_WORKER_MEMORY
           value: "4g"
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-worker
+  namespace: imadds
+spec:
+  type: ClusterIP
+  selector:
+    app: spark-worker
+  ports:
+  - name: webui
+    port: 8081
+    targetPort: 8081

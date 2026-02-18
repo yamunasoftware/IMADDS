@@ -3,8 +3,7 @@ services:
     build: .
     depends_on:
       - spark-master
-      - spark-worker-1
-      - spark-worker-2
+      - spark-worker
       - mongodb
       - kafka
     networks:
@@ -21,7 +20,7 @@ services:
       - "7077:7077"
       - "8080:8080"
 
-  spark-worker-1:
+  spark-worker:
     image: apache/spark:4.0.0-java21-python3
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     environment:
@@ -29,15 +28,8 @@ services:
       SPARK_WORKER_MEMORY: 4g
     networks:
       - imadds-network
-
-  spark-worker-2:
-    image: apache/spark:4.0.0-java21-python3
-    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
-    environment:
-      SPARK_WORKER_CORES: 4
-      SPARK_WORKER_MEMORY: 4g
-    networks:
-      - imadds-network
+    ports:
+      - "8081:8081"
 
   mongodb:
     image: mongo:8.2.1

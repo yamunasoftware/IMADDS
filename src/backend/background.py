@@ -14,6 +14,10 @@ def start_spark(name):
   .config("spark.jars", jars_config()) \
   .config("spark.mongodb.input.uri", fetch("db_url")) \
   .config("spark.mongodb.output.uri", fetch("db_url")) \
+  .config("spark.executor.memory", "3g") \
+  .config("spark.driver.memory", "2g") \
+  .config("spark.sql.adaptive.enabled", "true") \
+  .config("spark.sql.shuffle.partitions", "12") \
   .getOrCreate()
 
 # JARs Config from Environment Info:
