@@ -24,12 +24,10 @@ services:
     image: apache/spark:4.0.0-java21-python3
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     environment:
-      SPARK_WORKER_CORES: 4
+      SPARK_WORKER_CORES: 5
       SPARK_WORKER_MEMORY: 4g
     networks:
       - imadds-network
-    ports:
-      - "8081:8081"
 
   mongodb:
     image: mongo:8.2.1
