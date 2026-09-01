@@ -2,8 +2,13 @@ services:
   imadds:
     build:
       context: .
+    networks:
+      - imadds-network
     deploy:
       mode: replicated
       replicas: 4
       restart_policy:
         condition: on-failure
+
+networks:
+  imadds-network:
