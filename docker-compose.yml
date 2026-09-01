@@ -1,0 +1,9 @@
+services:
+  imadds:
+    build:
+      context: .
+    deploy:
+      mode: replicated
+      replicas: 4
+      restart_policy:
+        condition: on-failure
