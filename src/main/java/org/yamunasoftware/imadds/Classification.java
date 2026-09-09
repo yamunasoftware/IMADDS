@@ -12,8 +12,9 @@ public class Classification {
   public long  classificationTimestamp;
 
   public Classification(
-      String deviceId, String deviceType, int channel, float temperature, float humidity,
-      float pressure, long readingTimestamp, int classification, long  classificationTimestamp) {
+    String deviceId, String deviceType, int channel, float temperature, float humidity,
+    float pressure, long readingTimestamp, int classification, long  classificationTimestamp
+  ) {
     this.deviceId = deviceId;
     this.deviceType = deviceType;
     this.channel = channel;
