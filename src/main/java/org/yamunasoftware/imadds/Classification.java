@@ -1,5 +1,7 @@
 package org.yamunasoftware.imadds;
 
+import java.time.Instant;
+
 public class Classification {
   public String deviceId;
   public String deviceType;
@@ -8,21 +10,22 @@ public class Classification {
   public float humidity;
   public float pressure;
   public long readingTimestamp;
+  public long receivedTimestamp;
+  public long processStartTimestamp;
   public int classification;
-  public long  classificationTimestamp;
+  public long classificationTimestamp;
 
-  public Classification(
-    String deviceId, String deviceType, int channel, float temperature, float humidity,
-    float pressure, long readingTimestamp, int classification, long  classificationTimestamp
-  ) {
-    this.deviceId = deviceId;
-    this.deviceType = deviceType;
-    this.channel = channel;
-    this.temperature = temperature;
-    this.humidity = humidity;
-    this.pressure = pressure;
-    this.readingTimestamp = readingTimestamp;
+  public Classification(SensorReadingKafkaMessage reading, int classification) {
+    this.deviceId = reading.deviceId;
+    this.deviceType = reading.deviceType;
+    this.channel = reading.channel;
+    this.temperature = reading.temperature;
+    this.humidity = reading.humidity;
+    this.pressure = reading.pressure;
+    this.readingTimestamp = reading.readingTimestamp;
+    this.receivedTimestamp = reading.receivedTimestamp;
+    this.processStartTimestamp = reading.processStartTimestamp;
     this.classification = classification;
-    this.classificationTimestamp = classificationTimestamp;
+    this.classificationTimestamp = Instant.now().getEpochSecond();
   }
 }
