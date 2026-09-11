@@ -4,18 +4,19 @@ spring:
 
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+
     properties:
       security.protocol: SASL_SSL
       sasl.mechanism: AWS_MSK_IAM
       sasl.jaas.config: software.amazon.msk.auth.iam.IAMLoginModule required;
       sasl.client.callback.handler.class: software.amazon.msk.auth.iam.IAMClientCallbackHandler
+
     consumer:
-      group-id: message-processor
-      enable-auto-commit: false
-      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      auto-offset-reset: latest
+
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: all
-    listener:
-      ack-mode: record

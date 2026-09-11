@@ -2,7 +2,7 @@ package org.yamunasoftware.imadds;
 
 import java.time.Instant;
 
-public class Classification {
+public class ClassificationMessage {
   public String deviceId;
   public String deviceType;
   public int channel;
@@ -15,7 +15,7 @@ public class Classification {
   public int classification;
   public long classificationTimestamp;
 
-  public Classification(SensorReadingKafkaMessage reading, int classification) {
+  public ClassificationMessage(SensorReadingKafkaMessage reading, int classification) {
     this.deviceId = reading.deviceId;
     this.deviceType = reading.deviceType;
     this.channel = reading.channel;
